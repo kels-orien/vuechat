@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
+    <nav>
+      <div class="container">
+        <a href=''>
+          VUECHAT
+        </a>
+        <ul class="nav__left">
+        </ul>
+        <ul class="nav__right">
+          <a href=''>SIGNUP</a>
+        </ul>
+      </div>
+    </nav>
     <main>
       <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
@@ -33,12 +42,16 @@ main {
   margin-top: 40px;
 }
 
-header {
+a {
   margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
+  height: 40px;
+  padding: 10px 16px 0 24px;
   background-color: #35495E;
   color: #ffffff;
+  text-decoration: none;
+}
+.nav ul a :hover {
+   text-decoration: none;
 }
 
 header span {
