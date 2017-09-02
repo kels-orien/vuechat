@@ -14,13 +14,16 @@
 
  firebase.initializeApp(config);
 
- export default {
-     database: firebase.database()
- }
+
+
+ export var twitterProvider = new firebase.auth.TwitterAuthProvider();
+ export var firebaseRef = firebase.database().ref();
+ export var facebookProvider = new firebase.auth.FacebookAuthProvider();
+ export default firebase;
 
 
  var firebaseRef = firebase.database().ref()
- var userRef = firebaseRef.child('user').child('-KsxbL67duH64jOjd4QO')
+     //var userRef = firebaseRef.child('user').child('-KsxbL67duH64jOjd4QO')
 
  /*var newUserRef = userRef.push({
      username: 'fred23',
@@ -29,9 +32,29 @@
  })*/
  //console.log('new user id', newUserRef.key)
 
- userRef.update({ userId: uuid() });
+ //userRef.update({ userId: uuid() });
 
  //var userID = '-KsxbL67duH64jOjd4QO';
  /*userRef.once.then('value', (snapshot) => {
      console.log('user id from db:', snapshot.key)
  })*/
+
+
+
+ /*var addChatRef = firebaseRef.child('chat')
+ addChatRef.on('child_added', (snapshot) => {
+     console.log('child added to chat', snapshot.val());
+ });
+
+ addChatRef.push({
+     userId: '7edaf1dc-032b-4506-8ce3-f53964ae3887',
+     message: 'hello world how are u',
+     timestamp: 27899000
+ });
+
+
+ addChatRef.push({
+     userId: '7edaf1dc-032b-4506-8ce3-f53964ae3887',
+     message: 'its saturday',
+     timestamp: 27893344
+ });*/

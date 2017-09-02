@@ -8,13 +8,13 @@
           <h1>{{ msg }}</h1>
           
           <div class="form-group">
-            <a href="#" class="btn btn-primary btn-block">
+            <button class="btn btn-primary btn-block" ></button>
 				Login with Facebook
     </a>
           </div>
 
           <div class="form-group">
-            <a href="#" class="btn btn-info btn-block">
+            <button class="btn btn-info btn-block"@click="startLogin()"></button>
       Login with Twitter
     </a>
           </div>
@@ -27,13 +27,18 @@
 
 
 <script>
+ /* eslint-disable */
+import {startLogin} from '../auth/auth'
   export default {
     name: 'login',
     data () {
       return {
         msg: 'Login Component'
       }
-    }
+    },
+    startLogin () {
+        return startLogin();
+      }
   }
   
 </script>
