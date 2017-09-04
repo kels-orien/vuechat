@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import './firebase/index'
+
 export default {
   name: 'app'
 }

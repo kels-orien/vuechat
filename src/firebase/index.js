@@ -3,7 +3,7 @@
  import firebase from 'firebase';
  import uuid from 'uuid';
  // Initialize Firebase
- var config = {
+ export const config = {
      apiKey: "AIzaSyAQ-tw4AT8uyL_x1nLVErhX79mN8BnWKQc",
      authDomain: "vuechat-66b12.firebaseapp.com",
      databaseURL: "https://vuechat-66b12.firebaseio.com",
@@ -12,18 +12,16 @@
      messagingSenderId: '845126606274'
  };
 
- firebase.initializeApp(config);
+ //firebase.initializeApp(config);
 
 
 
- export var twitterProvider = new firebase.auth.TwitterAuthProvider();
- export var firebaseRef = firebase.database().ref();
- export var facebookProvider = new firebase.auth.FacebookAuthProvider();
- export default firebase;
 
 
- var firebaseRef = firebase.database().ref()
-     //var userRef = firebaseRef.child('user').child('-KsxbL67duH64jOjd4QO')
+
+
+ //var firebaseRef = firebase.database().ref()
+ //var userRef = firebaseRef.child('user').child('-KsxbL67duH64jOjd4QO')
 
  /*var newUserRef = userRef.push({
      username: 'fred23',

@@ -2,14 +2,27 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import firebase from 'firebase'
+import VueRouter from 'vue-router'
+import { config } from './firebase/index'
 import router from './router'
 
 Vue.config.productionTip = false
-/* eslint-disable no-new */
+    /* eslint-disable */
+Vue.use(VueRouter)
 new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: {App}
+    router,
+    created() {
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.$router.push('/chat')
+            } else {
+                this.$router.push('/auth')
+            }
+        });
+    },
+    el: '#app',
+    template: '<App/>',
+    components: { App }
 })
-
