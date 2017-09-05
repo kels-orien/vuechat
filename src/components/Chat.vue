@@ -53,10 +53,22 @@
 
 <script>
 /*eslint-disable*/
-import firebase from 'firebase'
+
+import firebase, { chatRef } from '../firebase/index'
   export default {
     name: 'chat',
-    
+    data() {
+    return {
+      messages: ''
+    };
+  },
+  mounted(){
+    chatRef.on('child_added', (snapshot) => {
+     console.log('child added to chat', snapshot.val());
+     this.messages = snapshot.val();
+ });
+
+  },
      methods: {
     logOut() {
       firebase.auth().signOut()

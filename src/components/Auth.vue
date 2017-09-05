@@ -27,13 +27,13 @@
           <h1>{{ msg }}</h1>
           
           <div class="form-group">
-            <button class="btn btn-primary btn-block" @click="facebookLogin()">	Login with Facebook</button>
+            <button class="btn btn-primary btn-block" @click="facebookAuth()">	Login with Facebook</button>
 			
     </a>
           </div>
 
           <div class="form-group">
-            <button class="btn btn-info btn-block"  @click="twitterLogin()"> Login with Twitter</button>
+            <button class="btn btn-info btn-block"  @click="twitterAuth()"> Login with Twitter</button>
     
     </a>
           </div>
@@ -60,7 +60,7 @@ import { config } from '../firebase/index'
       }
     },
     methods :{
-      facebookLogin: function (){
+      facebookAuth: function (){
           const facebookProvider = new firebase.auth.FacebookAuthProvider();
           return firebase.auth().signInWithPopup(facebookProvider).then((result) => {
            console.log('Auth worked!', result);
@@ -69,7 +69,7 @@ import { config } from '../firebase/index'
              console.log('Unable to auth', error);
           });
       },
-      twitterLogin: function (){
+      twitterAuth: function (){
           const provider = new firebase.auth.TwitterAuthProvider();
           // const result = auth().signInWithPopup(provider);
           return firebase.auth().signInWithPopup(provider).then((result) => {

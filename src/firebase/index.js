@@ -12,7 +12,7 @@
      messagingSenderId: '845126606274'
  };
 
- //firebase.initializeApp(config);
+ firebase.initializeApp(config);
 
 
 
@@ -20,7 +20,10 @@
 
 
 
- //var firebaseRef = firebase.database().ref()
+ var firebaseRef = firebase.database().ref()
+ export var chatRef = firebaseRef.child('chat')
+ export default firebase
+
  //var userRef = firebaseRef.child('user').child('-KsxbL67duH64jOjd4QO')
 
  /*var newUserRef = userRef.push({
