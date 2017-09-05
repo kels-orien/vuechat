@@ -1,4 +1,23 @@
 <template>
+<div>
+<div>
+    <nav>
+      <div class="container">
+        <a href=''>
+          VUECHAT
+        </a>
+        <ul class="nav__left">
+        </ul>
+        <ul class="nav__right">
+          <a href=''@click="logOut()">SIGNOUT</a>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <img src="../assets/logo.png" alt="Vue.js PWA">
+      <router-view></router-view>
+    </main>
+  </div>
   <div>
       <div class="chatbox">
           <div class = "chatlogs">
@@ -28,12 +47,21 @@
 
 
     </div>
+</div>
 </template>
 
 
 <script>
+/*eslint-disable*/
+import firebase from 'firebase'
   export default {
-    name: 'chat'
+    name: 'chat',
+    
+     methods: {
+    logOut() {
+      firebase.auth().signOut()
+    }
+  }
   }
 </script>
 <style>

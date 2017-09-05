@@ -1,4 +1,23 @@
 <template>
+<div id="app">
+<div>
+    <nav>
+      <div class="container">
+        <a href=''>
+          VUECHAT
+        </a>
+        <ul class="nav__left">
+        </ul>
+        <ul class="nav__right">
+          <a href=''>SIGNUP</a>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <img src="../assets/logo.png" alt="Vue.js PWA">
+      <router-view></router-view>
+    </main>
+  </div>
   <div id="login">
     <div class="container">
       <div class="row">
@@ -24,6 +43,7 @@
     </div>
     
   </div>
+ </div>
 </template>
 
 
@@ -41,8 +61,8 @@ import { config } from '../firebase/index'
     },
     methods :{
       facebookLogin: function (){
-          const provider = new firebase.auth.facebookAuthProvider();
-          return firebase.auth().signInWithPopup(provider).then((result) => {
+          const facebookProvider = new firebase.auth.FacebookAuthProvider();
+          return firebase.auth().signInWithPopup(facebookProvider).then((result) => {
            console.log('Auth worked!', result);
            this.$router.push('/chat');
           }, (error) => {
