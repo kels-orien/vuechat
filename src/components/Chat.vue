@@ -19,23 +19,12 @@
     </main>
   </div>
   <div>
-      <div class="chatbox">
+      <div class="chatbox" >
           <div class = "chatlogs">
-              <div class = "chat friend">
+              <div class = "chat friend"v-for="item in anArray">
                   <div class ='user-photo'>
                       <img src = "">
-                  </div><p class = "chat-message">Hello World!!!</p>
-              </div>
-              <div class = "chat self">
-                  <div class ='user-photo'>
-                      <img src = "">
-                  </div>
-                   <p class = "chat-message">Hello Nigeria!!!</p>
-              </div>
-              <div class = "chat friend">
-                  <div class ='user-photo'>
-                     <img src = "">
-                  </div> <p class = "chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div><p class = "chat-message">{{item.message}}</p>
               </div>
           </div>
           <div class = "chat-form">
@@ -55,19 +44,26 @@
 /*eslint-disable*/
 
 import firebase, { chatRef } from '../firebase/index'
+import Vue from 'vue'
+import Vuefire from 'vuefire'
+Vue.use(Vuefire);
   export default {
     name: 'chat',
     data() {
     return {
-      messages: ''
+      messages: [],
+      userId:'',
+      commment:'',
+      parsedChat:[]
     };
   },
-  mounted(){
-    chatRef.on('child_added', (snapshot) => {
-     console.log('child added to chat', snapshot.val());
-     this.messages = snapshot.val();
- });
-
+  firebase: {
+    // can bind to either a direct Firebase reference or a query
+    anArray: chatRef,
+    // optionally provide the cancelCallback
+      cancelCallback: function () {},
+      // this is called once the data has been retrieved from firebase
+      readyCallback: function () {}
   },
      methods: {
     logOut() {
