@@ -19,6 +19,7 @@
     </main>
   </div>
   <div>
+      
       <div class="chatbox" >
           <div class = "chatlogs">
               <div class = "chat friend"v-for="item in anArray">
@@ -28,11 +29,11 @@
               </div>
           </div>
           <div class = "chat-form">
-              <textarea></textarea>
-              <button>Send</button>
+              <textarea v-model ="newComment"></textarea>
+              <button @click="addComment()">Send</button>
           </div>
       </div>
-
+      
 
 
     </div>
@@ -46,6 +47,7 @@
 import firebase, { chatRef } from '../firebase/index'
 import Vue from 'vue'
 import Vuefire from 'vuefire'
+import moment from 'moment'
 Vue.use(Vuefire);
   export default {
     name: 'chat',
@@ -68,6 +70,17 @@ Vue.use(Vuefire);
      methods: {
     logOut() {
       firebase.auth().signOut()
+    },
+    addComment() {
+        
+        if (this.newComment !== '' ){
+            this.comment = this.newComment.trim(); 
+            chatRef.push({
+                message:this.comment,
+                timestamp: moment().unix()
+            });
+            this.newComment ="";
+        }
     }
   }
   }
