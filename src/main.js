@@ -5,6 +5,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 import firebase, { config } from './firebase/index'
 import router from './router'
+import './utils/filter.js'
 
 Vue.config.productionTip = false
     /* eslint-disable */

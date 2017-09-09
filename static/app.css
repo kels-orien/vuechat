@@ -255,3 +255,7 @@ nav .nav__right {
 .chat-form button:hover {
     background: #13c8d9;
 }
+
+.chat-date {
+    margin-left: 5px;
+}

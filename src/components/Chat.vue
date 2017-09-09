@@ -23,13 +23,12 @@
       <div class="chatbox" >
           <div class = "chatlogs">
               <div class = "chat friend"v-for="item in anArray">
-                  <div class ='user-photo'>
-                      <img src = "">
-                  </div><p class = "chat-message">{{item.message}}</p>
+                  {{item.name}} <span class = "chat-date">{{item.timestamp | formatDate}}</span>
+                  <p class = "chat-message">{{item.message}}</p>
               </div>
           </div>
           <div class = "chat-form">
-              <textarea v-model ="newComment"></textarea>
+              <textarea v-model ="newComment" placeholder="Type and press send to chat"></textarea>
               <button @click="addComment()">Send</button>
           </div>
       </div>
@@ -47,16 +46,15 @@
 import firebase, { chatRef } from '../firebase/index'
 import Vue from 'vue'
 import Vuefire from 'vuefire'
-import moment from 'moment'
+import dateFilter from '../utils/filter.js';
 Vue.use(Vuefire);
+
   export default {
     name: 'chat',
     data() {
     return {
-      messages: [],
-      userId:'',
-      commment:'',
-      parsedChat:[]
+      comment:'',
+      newComment:''
     };
   },
   firebase: {
@@ -66,6 +64,9 @@ Vue.use(Vuefire);
       cancelCallback: function () {},
       // this is called once the data has been retrieved from firebase
       readyCallback: function () {}
+  },
+  filters: {
+    dateFilter,
   },
      methods: {
     logOut() {
@@ -77,10 +78,21 @@ Vue.use(Vuefire);
             this.comment = this.newComment.trim(); 
             chatRef.push({
                 message:this.comment,
-                timestamp: moment().unix()
+                name:this.getUserName(),
+                timestamp: moment().unix(),
+                userId:this.getUserId()
             });
             this.newComment ="";
         }
+    },
+
+    getUserId()
+    {
+       return firebase.auth().currentUser.uid;
+    },
+    getUserName()
+    {
+        return firebase.auth().currentUser.displayName;
     }
   }
   }
